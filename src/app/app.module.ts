@@ -11,11 +11,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ClarityModule } from '@clr/angular';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductHistoryComponent } from './product-history/product-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductListComponent,
+    ProductCardComponent,
+    ProductHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSnackBarModule,
     MatButtonModule,
     MatToolbarModule,
+    ClarityModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
