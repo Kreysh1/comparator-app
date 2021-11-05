@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,7 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ClarityModule } from '@clr/angular';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductHistoryComponent } from './product-history/product-history.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ProductHistoryComponent } from './product-history/product-history.compo
     HeaderComponent,
     ProductListComponent,
     ProductCardComponent,
-    ProductHistoryComponent
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +36,7 @@ import { ProductHistoryComponent } from './product-history/product-history.compo
     MatButtonModule,
     MatToolbarModule,
     ClarityModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
