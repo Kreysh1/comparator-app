@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Product Name</mat-card-title>
+        <mat-card-subtitle>Version</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="./assets/Logo_A.png" class="card-img">
+    <mat-card-content>
+        <h1>Description</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Obcaecati, quia voluptate officia quasi dignissimos laboriosam 
+            delectus dolore nemo mollitia itaque, consequatur quidem sunt laudantium. 
+            Ad voluptas quis repellendus dolorum non.</p>
+    </mat-card-content>
+</mat-card>
+
+<clr-datagrid>
+    <clr-dg-column [clrDgField]="'Portada'" [clrDgColType]="'number'">Portada</clr-dg-column>
+    <clr-dg-column [clrDgField]="'Nombre'">Nombre</clr-dg-column>
+    <clr-dg-column [clrDgField]="'Precio'">Precio</clr-dg-column>
+    <clr-dg-column [clrDgField]="'Distribuidor'">Distribuidor</clr-dg-column>
+    <clr-dg-column [clrDgField]="'Link'">Link</clr-dg-column>
+    <clr-dg-row>
+        <clr-dg-cell><img src="./assets/Logo_A.png" alt="Videojuego" class="grid-img"></clr-dg-cell>
+        <clr-dg-cell>TITLE2</clr-dg-cell>
+        <clr-dg-cell>PRICE3</clr-dg-cell>
+        <clr-dg-cell>EMPRESA54</clr-dg-cell>
+        <clr-dg-cell>LINK5</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>Cantidad de Ofertas:</clr-dg-footer>
+</clr-datagrid>
+
+<clr-charts type="line" [data]="data" options="options"></clr-charts>

@@ -12,18 +12,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ProductListComponent } from './product-list/product-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatTableModule } from '@angular/material/table'
 import { ClarityModule } from '@clr/angular';
-import { ProductCardComponent } from './product-card/product-card.component';
 import { ChartComponent } from './chart/chart.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TrackingComponent } from './tracking/tracking.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProductListComponent,
-    ProductCardComponent,
     ChartComponent,
+    TrackingComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,8 +39,12 @@ import { ChartComponent } from './chart/chart.component';
     MatSnackBarModule,
     MatButtonModule,
     MatToolbarModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTableModule,
     ClarityModule,
     FormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

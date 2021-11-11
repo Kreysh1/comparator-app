@@ -1,16 +1,5 @@
 <mat-toolbar color="primary">
-    <span>Comparador de Precios</span>
+    <a routerLink="/home" routerLinkActive="active" class="nav-link"><span>Comparador de Precios</span></a>
     <span class="spacer"></span>
-    <button mat-icon-button>
-        <mat-icon>account_circle</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon>cached</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon>settings</mat-icon>
-    </button>
+    <mat-slide-toggle [(ngModel)]="DarkMode"></mat-slide-toggle>
 </mat-toolbar>
