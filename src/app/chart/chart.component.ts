@@ -19,7 +19,7 @@ export class ChartComponent implements OnInit {
       type: self.type,
       data: self.data,
       options: self.options
-    })}, 100);
+    })}, 500);
     
   }
 }

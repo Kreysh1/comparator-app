@@ -1,25 +1,36 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+//Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+
+//Other Modules
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatTableModule } from '@angular/material/table'
+import { MatListModule } from '@angular/material/list'
 import { ClarityModule } from '@clr/angular';
-import { ChartComponent } from './chart/chart.component';
-import { AppRoutingModule } from './app-routing.module';
+
+//Components
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
 import { TrackingComponent } from './tracking/tracking.component';
 import { ProductsComponent } from './products/products.component';
+import { ChartComponent } from './chart/chart.component';
+import { LoginComponent } from './login/login.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,6 +39,7 @@ import { ProductsComponent } from './products/products.component';
     ChartComponent,
     TrackingComponent,
     ProductsComponent,
+    LoginComponent, 
   ],
   imports: [
     BrowserModule,
@@ -37,14 +49,18 @@ import { ProductsComponent } from './products/products.component';
     MatInputModule,
     MatCardModule,
     MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatToolbarModule,
     MatPaginatorModule,
     MatSlideToggleModule,
-    MatTableModule,
+    MatListModule,
     ClarityModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

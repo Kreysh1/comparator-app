@@ -1,8 +1,9 @@
 .spacer {
     flex: 1 1 auto;
 }
-mat-icon {
-    border: 0;
+
+button:focus {
+    outline: 0px;
 }
 
 a {
