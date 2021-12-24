@@ -21,6 +21,8 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatTableModule } from '@angular/material/table'
 import { MatListModule } from '@angular/material/list'
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatSelectModule } from '@angular/material/select';
 import { ClarityModule } from '@clr/angular';
 
 //Components
@@ -31,6 +33,7 @@ import { ProductsComponent } from './products/products.component';
 import { ChartComponent } from './chart/chart.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from 'src/environments/environment';
+import { SheetComponent } from './sheet/sheet.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { environment } from 'src/environments/environment';
     ChartComponent,
     TrackingComponent,
     ProductsComponent,
-    LoginComponent, 
+    LoginComponent,
+    SheetComponent, 
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,8 @@ import { environment } from 'src/environments/environment';
     MatPaginatorModule,
     MatSlideToggleModule,
     MatListModule,
+    MatBottomSheetModule,
+    MatSelectModule,
     ClarityModule,
     FormsModule,
     AppRoutingModule,

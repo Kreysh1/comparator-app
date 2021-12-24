@@ -13,7 +13,7 @@ export class EpicService {
     return this.http.get(environment.epicCodesUrl)
   }
 
-  getDetails(gameID: string){
+  getDetails(gameID: any){
     return this.http.get(`${environment.epicDetailsUrl}/${gameID}.json`)
   }
 

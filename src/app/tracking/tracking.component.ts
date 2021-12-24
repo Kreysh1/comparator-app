@@ -20,7 +20,7 @@ export class TrackingComponent implements OnInit {
   epicTitle: string
   epicImage: any
   epicDesc: any
-  epictSlug : any
+  epicSlug : any
   epicPrice : any
 
   //STEAM
@@ -33,6 +33,8 @@ export class TrackingComponent implements OnInit {
   // ARRAYS
   epicHistoryDates: Array<string> = []
   epicHistoryPrices: Array<number> = []
+  steamHistoryDates: Array<string> = []
+  steamHistoryPrices: Array<number> = []
   background: Array<string> = []
   bordercolor: Array<string> = []
 
@@ -42,7 +44,7 @@ export class TrackingComponent implements OnInit {
       this.epicTitle = data.title
       this.epicImage = data.keyImages[0].url
       this.epicDesc = data.description
-      this.epictSlug = data.productSlug
+      this.epicSlug = data.urlSlug
     });
 
     this.SteamService.getDetails(this.steamID, this.currency, this.language).subscribe((steamData:any) => {
@@ -50,8 +52,10 @@ export class TrackingComponent implements OnInit {
       const ID = this.steamID
       this.steamTitle = steamData[ID].data.name
       this.steamImage = steamData[ID].data.header_image
-      this.steamDesc = steamData[ID].data.short_description
+      this.steamDesc = steamData[ID].data.short_description 
+      this.steamPrice = "$0"
       this.steamPrice = steamData[ID].data.price_overview.final_formatted
+
     });
   }
 
@@ -62,7 +66,8 @@ export class TrackingComponent implements OnInit {
           this.EpicService.getPrices(this.currency, this.epicID).subscribe((data:any) => {
 
             for (const KEY in data){
-              this.epicHistoryDates.push(data[KEY][0])
+              const DATE = (data[KEY][0]).substring(0,10);
+              this.epicHistoryDates.push(DATE)
 
               const PRICE = this.priceFormat(data[KEY][1])
 
@@ -70,15 +75,19 @@ export class TrackingComponent implements OnInit {
 
               this.background.push('rgba(255, 99, 132, 1)')
               this.bordercolor.push('rgba(103, 58, 183, 1)')
+              this.steamHistoryPrices.push(0);
+              
             }
-      
+
+            this.steamHistoryPrices.pop();
+            this.steamHistoryPrices.push(145.23);
             this.epicPrice = this.epicHistoryPrices[0]
 
             this.epicHistoryDates.reverse()
             this.epicHistoryPrices.reverse()
 
-            console.log(this.epicHistoryDates)
-            console.log(this.epicHistoryPrices)
+            //console.log(this.epicHistoryDates)
+            //console.log(this.epicHistoryPrices)
           })
         );
       }, 0);
@@ -103,7 +112,7 @@ export class TrackingComponent implements OnInit {
       },
       {
         label: 'Steam',
-        data: [],
+        data: this.steamHistoryPrices,
         backgroundColor: [],
         borderColor: [],
         fill: false,
@@ -142,23 +151,18 @@ export class TrackingComponent implements OnInit {
     const pricePromise = this.loadPrices();
 
     pricePromise.then(() =>{
-      console.log("Precios Cargados...")
+      //console.log("Precios Cargados...")
     })
     this.chart()
   }
 
   priceFormat(str : any){
-
     str = str.toString()
 
     var cents = str.substring(str.length-2, str.length)
     var value = str.substring(0, str.length-2)
-
     let new_value : number = parseFloat(`${value}.${cents}a`)
 
     return new_value;
   }
-
-
-
 }

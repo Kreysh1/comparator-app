@@ -19,7 +19,11 @@ export const environment = {
   //STEAM API's
   steamCodesUrl:'/ISteamApps/GetAppList/v0002',
   steamDetailsUrl: '/api/appdetails',
-  steamHistoryUrl: ''
+  steamHistoryUrl: '',
+
+  // COUNTRIES AND FLAGS API's
+  flagsAPI: 'https://flagcdn.com/'
+
 };
 
 
