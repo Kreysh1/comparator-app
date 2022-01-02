@@ -1,72 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-//Modules
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat';
-
-//Other Modules
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSortModule } from '@angular/material/sort';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatPaginatorModule } from '@angular/material/paginator'
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
-import { MatTableModule } from '@angular/material/table'
-import { MatListModule } from '@angular/material/list'
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { MatSelectModule } from '@angular/material/select';
-import { ClarityModule } from '@clr/angular';
-
-//Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { TrackingComponent } from './tracking/tracking.component';
-import { ProductsComponent } from './products/products.component';
-import { ChartComponent } from './chart/chart.component';
-import { LoginComponent } from './login/login.component';
-import { environment } from 'src/environments/environment';
-import { SheetComponent } from './sheet/sheet.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FavSheetComponent } from './components/fav-sheet/fav-sheet.component';
+import { ProductsComponent } from './components/products/products.component';
+import { TrackingComponent } from './components/tracking/tracking.component';
+import { RegionDialogComponent } from './components/region-dialog/region-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     ChartComponent,
-    TrackingComponent,
-    ProductsComponent,
+    HeaderComponent,
     LoginComponent,
-    SheetComponent, 
+    FooterComponent,
+    FavSheetComponent,
+    ProductsComponent,
+    TrackingComponent,
+    RegionDialogComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatPaginatorModule,
-    MatSlideToggleModule,
-    MatListModule,
-    MatBottomSheetModule,
-    MatSelectModule,
-    ClarityModule,
-    FormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
