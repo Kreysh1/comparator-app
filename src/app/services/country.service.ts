@@ -1,9 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getCountries(language: string){
+    return this.http.get(`${environment.countryAPI}/${language}/codes.json`)
+  }
+
 }

@@ -12,11 +12,12 @@ export const environment = {
   epicCodesUrl:'https://raw.githubusercontent.com/srdrabx/offers-tracker/master/database/titles.json',
   epicDetailsUrl: 'https://raw.githubusercontent.com/srdrabx/offers-tracker/master/database/offers',
   epicHistoryUrl: 'http://raw.githubusercontent.com/srdrabx/prices-tracker-egs/master/database/prices-history',
+  epicPriceUrl: 'https://raw.githubusercontent.com/srdrabx/prices-tracker-egs/master/database/prices',
   //STEAM API's
   steamCodesUrl:'/ISteamApps/GetAppList/v0002',
   steamDetailsUrl: '/api/appdetails',
   steamHistoryUrl: '',
 
   // COUNTRIES AND FLAGS API's
-  flagsAPI: 'https://flagcdn.com/'
+  countryAPI: 'https://flagcdn.com/'
 };

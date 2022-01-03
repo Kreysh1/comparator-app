@@ -23,7 +23,7 @@ export const environment = {
   steamHistoryUrl: '',
 
   // COUNTRIES AND FLAGS API's
-  flagsAPI: 'https://flagcdn.com/'
+  countryAPI: 'https://flagcdn.com/'
 
 };
 

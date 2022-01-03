@@ -1,1 +1,13 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+    <a routerLink="/" routerLinkActive="active" class="nav-link"><span>Comparador de Precios</span></a>
+    <span class="spacer"></span>
+  
+    <h1 class="region-label" (click)="openRegionDialog()"><img src="{{actualCountry.img}}"> {{actualLanguage}} | {{actualCurrency}}</h1>
+    
+    <button mat-icon-button>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="openFavSheet()">
+      <mat-icon>favorite</mat-icon>
+    </button>
+</mat-toolbar>

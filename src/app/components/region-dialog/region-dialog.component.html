@@ -1,1 +1,30 @@
-<p>region-dialog works!</p>
+<h1 mat-dialog-title>Actualiza tu configuración</h1>
+<div mat-dialog-content>
+  <p>Establezca su región preferida, idioma y moneda preferida.</p>
+</div>
+
+<h3>Región</h3>
+<mat-form-field appearance="fill">
+    <mat-select matNativeControl [(ngModel)]="actualCountry" (ngModelChange)="countrySelected($event)">
+      <mat-option *ngFor="let country of countries" [value]="country"><img src="{{country.img}}" alt="{{country.name}}"> {{country.name}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<h3>Idioma</h3>
+<mat-form-field appearance="fill">
+    <mat-select>
+      <mat-option></mat-option>
+    </mat-select>
+</mat-form-field>
+
+<h3>Moneda</h3>
+<mat-form-field appearance="fill">
+    <mat-select>
+      <mat-option></mat-option>
+    </mat-select>
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button>Guardar</button>
+</div>
