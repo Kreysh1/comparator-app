@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { RegionDialogComponent } from '../region-dialog/region-dialog.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { CountryService } from 'src/app/services/country.service';
 import { FavSheetComponent } from '../fav-sheet/fav-sheet.component';
 import { Country } from 'src/app/interfaces/country';
@@ -58,6 +59,20 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this._dialog.open(RegionDialogComponent, {
       width: '500px',
       data: this.countries
+    });
+
+    dialogRef.afterOpened().subscribe(() => {
+      console.log("The dialog was opened successfully.");
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openLoginDialog(): void {
+    const dialogRef = this._dialog.open(LoginDialogComponent, {
+      width: '500px'
     });
 
     dialogRef.afterOpened().subscribe(() => {

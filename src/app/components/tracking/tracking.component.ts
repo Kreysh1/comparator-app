@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EpicService } from 'src/app/services/epic.service';
 import { SteamService } from 'src/app/services/steam.service';
+import { Details } from 'src/app/interfaces/details';
 
 @Component({
   selector: 'app-tracking',
@@ -11,6 +12,8 @@ import { SteamService } from 'src/app/services/steam.service';
 export class TrackingComponent implements OnInit {
 
   constructor(private EpicService: EpicService, private SteamService: SteamService , private route: ActivatedRoute) { }
+
+  details: Array<Details>;
 
   // COUNTRY & LANGUAGE
   currency : string = "mx";
@@ -56,7 +59,6 @@ export class TrackingComponent implements OnInit {
       this.steamDesc = steamData[ID].data.short_description 
       this.steamPrice = "$0"
       this.steamPrice = steamData[ID].data.price_overview.final_formatted
-
     });
   }
 
@@ -89,6 +91,12 @@ export class TrackingComponent implements OnInit {
 
             //console.log(this.epicHistoryDates)
             //console.log(this.epicHistoryPrices)
+
+
+            this.details = [
+              {image: this.epicImage, title: this.epicTitle, price: this.epicPrice, platform: 'EPIC', link: this.epicSlug},
+            ];
+
           })
         );
       }, 0);
@@ -153,9 +161,13 @@ export class TrackingComponent implements OnInit {
     const pricePromise = this.loadPrices();
 
     // pricePromise.then(() =>{
-    //   //console.log("Precios Cargados...")
+      
     // })
-    // this.chart()
+    
+    setTimeout(() => {
+      this.chart()
+    }, 500);
+
   }
 
   priceFormat(str : any){

@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
-  selector: 'app-chart',
+  selector: 'clr-charts',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
+  @Input() type!: string;
+  @Input() data: any;
+  @Input() options: any;
+  LineChart: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    // Line chart:
+    let self = this;
+    setTimeout(function() { console.log(self.type);  new Chart(self.type, {
+      type: "line",
+      data: self.data,
+      options: self.options
+    })}, 500);
+    
   }
-
 }

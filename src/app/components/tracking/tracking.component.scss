@@ -4,16 +4,21 @@ mat-card {
     margin-top: 10px;
 }
 
+th{
+    text-align: left;
+}
+
+.card{
+    margin: auto;
+    margin-top: 50px;
+    width: 60vw;
+}
+
+
 .card-img {
     height: 200px;
     width: 200px;
     margin-left: 125px;
-}
-
-table {
-    margin: auto;
-    margin-top: 50px;
-    width: 90vw;
 }
 
 .grid-img {
