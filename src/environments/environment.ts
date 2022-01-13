@@ -7,10 +7,11 @@ export const environment = {
   firebaseConfig: {
     apiKey: "AIzaSyCtattASA-2mdBlsZyiA1_lKqnEDFgc7Xo",
     authDomain: "comparator-app-fb0d3.firebaseapp.com",
+    databaseURL: "https://comparator-app-fb0d3-default-rtdb.firebaseio.com",
     projectId: "comparator-app-fb0d3",
     storageBucket: "comparator-app-fb0d3.appspot.com",
     messagingSenderId: "46462338015",
-    appId: "1:46462338015:web:8d3152cd648881d1533a6a"
+    appId: "1:46462338015:web:78522b6000a71e4c533a6a"
   },
   //EPIC GAMES API's
   epicCodesUrl:'https://raw.githubusercontent.com/srdrabx/offers-tracker/master/database/titles.json',
@@ -24,7 +25,6 @@ export const environment = {
 
   // COUNTRIES AND FLAGS API's
   countryAPI: 'https://flagcdn.com/'
-
 };
 
 

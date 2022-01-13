@@ -7,22 +7,34 @@
   
     <mat-table #table [dataSource]="dataSource" matSort>
   
-      <!-- Position Column -->
+      <!-- Title Column -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
         <mat-cell *matCellDef="let game"><a [routerLink]="['/tracking']" [queryParams]="{epic: game.epic_id, steam: game.steam_id}" routerLinkActive="active" class="nav-link">{{game.title}}</a></mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
+      <!-- Epic Column -->
       <ng-container matColumnDef="epic_id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Epic ID </mat-header-cell>
         <mat-cell *matCellDef="let game"> {{game.epic_id}} </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
+      <!-- Steam Column -->
       <ng-container matColumnDef="steam_id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Steam ID </mat-header-cell>
         <mat-cell *matCellDef="let game"> {{game.steam_id}} </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="Discount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Descuento</mat-header-cell>
+        <mat-cell *matCellDef="let game"><button mat-icon-button><mat-icon style="color: rgb(15, 192, 9);">stars</mat-icon></button> </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="Favorite">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let game"><button mat-mini-fab color="warn" (click)="nuevoJuego(game.title, game.steam_id, game.epic_id)"><mat-icon class="hearth">favorite</mat-icon></button> </mat-cell>
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

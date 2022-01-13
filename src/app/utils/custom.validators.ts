@@ -29,12 +29,13 @@ export class CustomValidation{
 
   static passwordMatchValidator(control: AbstractControl) {
   const password: string | null = control.get('password')?.value; // get password from our password form control
-  const confirmPassword: string | null = control.get('confirmPassword')?.value; // get password from our confirmPassword form control
+  const confirm: string | null = control.get('confirm')?.value; // get password from our confirmPassword form control
   // compare is the password math
-  if (password !== confirmPassword) {
+  if (password !== confirm) {
     // if they don't match, set an error in our confirmPassword form control
-    control.get('confirmPassword')?.setErrors({ NoPassswordMatch: true });
+    return ({ NoPasswordMatch: true });
   }
+  return null;
 }
 
 

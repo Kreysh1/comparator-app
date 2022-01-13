@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 // UI MATERIALS
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,7 +25,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatBadgeModule } from '@angular/material/badge'
+import { MatMenuModule } from '@angular/material/menu';
 
 //UI PRIME-NG
 import {TableModule} from 'primeng/table';
@@ -45,7 +48,6 @@ import { TrackingComponent } from './components/tracking/tracking.component';
 import { RegionDialogComponent } from './components/region-dialog/region-dialog.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     MatToolbarModule,
     MatIconModule,
     MatBottomSheetModule,
@@ -79,8 +83,10 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     MatInputModule,
     MatDialogModule,
     MatTabsModule,
+    MatBadgeModule,
     TableModule,
     ChartModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

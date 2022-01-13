@@ -1,4 +1,4 @@
-export interface Game {
+export class favGame {
     title?: string | null;
     steam_id?: string | any;
     epic_id?: string | any;

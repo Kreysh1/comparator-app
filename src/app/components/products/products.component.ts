@@ -7,6 +7,9 @@ import { EpicService } from 'src/app/services/epic.service';
 import { SteamService } from 'src/app/services/steam.service';
 import { Game } from 'src/app/interfaces/game';
 import { Product } from 'src/app/interfaces/product';
+import { GameService } from 'src/app/services/game.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { favGame } from 'src/app/models/favGame';
 
 @Component({
   selector: 'app-products',
@@ -16,14 +19,20 @@ import { Product } from 'src/app/interfaces/product';
 
 export class ProductsComponent implements OnInit{
 
-  constructor(private EpicService: EpicService, private SteamService: SteamService, private httpClient: HttpClient) { }
+  constructor(
+    private EpicService: EpicService, 
+    private SteamService: SteamService, 
+    private httpClient: HttpClient, 
+    private gameService: GameService, 
+    private authService: AuthService
+  ) { }
 
   //epicList: Game[] = [];
   //steamList: Game[] = [];
   gamesList: Game[] = [];
   productsList: Product[] = [];
 
-  displayedColumns = ['title', 'epic_id', 'steam_id'];
+  displayedColumns = ['title', 'epic_id', 'steam_id', 'Discount', 'Favorite'];
   public dataSource: MatTableDataSource<any>;
 
   applyFilter(event: Event) {
@@ -55,9 +64,10 @@ export class ProductsComponent implements OnInit{
             }
             
             
-            var test: Product = {image:epicDatad.keyImages[0].url, title:title, epic_id:epicID, epic_price:epicPrice, steam_id:steamID, steam_price:steamPrice, discount:discount}
+            //var test: Product = {image:epicDatad.keyImages[0].url, title:title, epic_id:epicID, epic_price:epicPrice, steam_id:steamID, steam_price:steamPrice, discount:discount}
 
-            this.productsList.push(test);
+            //this.productsList.push(test);
+            //console.log("test" + test)
   
           });
         });
@@ -65,11 +75,45 @@ export class ProductsComponent implements OnInit{
     }
   }
 
+  favprueba(steam: string, epic:string){
+    console.log(steam + "  " + epic)
+  }
+
+  getUserLogged(){
+    this.authService.getUserLogged().subscribe(res =>{
+      this.UID = res?.uid
+      console.log(`Email:${res?.email} Name:${res?.displayName}`);
+    });
+  }
+
+  game: Game = new favGame();
+  UID: string | undefined;
+
+  changeRef(){
+    this.gameService.changeRef(this.UID)
+  }
+
+  nuevoJuego(title: string, steam: string, epic:string): void{
+    this.game = new favGame();
+    this.game.title = title.toString()
+    this.game.steam_id = steam.toString()
+    this.game.epic_id = epic.toString()
+    console.log(this.game);
+    this.changeRef();
+    this.guardarFav();
+  }
+
+  guardarFav(): void{
+    this.gameService.create(this.game.steam_id,this.game).then(() =>{
+      console.log('Juego agregado a Favoritos');
+    })
+  }
 
   loadGames(){
     // JSON REQUEST (local data) =============================================*
     this.httpClient.get<any>("assets/games.json").subscribe((data)=>{
       this.gamesList = data
+
       this.dataSource = new MatTableDataSource(this.gamesList);
       this.dataSource.paginator = this.paginator
       this.dataSource.sort = this.sort
@@ -140,8 +184,8 @@ export class ProductsComponent implements OnInit{
   ngOnInit() {
 
     // In case of CORS or 404 Error start server with 'npm start' (or 'ng server --proxy-config proxy.conf.json')
+    this.getUserLogged()
     this.loadGames()
-    
     // return new Promise((resolve, reject) => {
     //   setTimeout(() => {
     //     resolve(

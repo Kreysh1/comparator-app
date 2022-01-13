@@ -1,3 +1,37 @@
+ul>li{
+    list-style: none;
+}
+
+li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+li>button>img{
+    width: 50px;
+}
+
+button{
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+    margin-left: 25px; 
+}
+
+.icons{
+    display: flex;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.icons>ul{
+    display: flex;
+    margin-left: -50px;
+}
+
 .login-form{
     margin-top: 30px;
     min-width: 150px;

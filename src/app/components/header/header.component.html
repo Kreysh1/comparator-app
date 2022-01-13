@@ -1,13 +1,32 @@
 <mat-toolbar color="primary">
     <a routerLink="/" routerLinkActive="active" class="nav-link"><span>Comparador de Precios</span></a>
     <span class="spacer"></span>
-  
+
+
     <h1 class="region-label" (click)="openRegionDialog()"><img src="{{actualCountry.img}}"> {{actualLanguage}} | {{actualCurrency}}</h1>
+
+    <h1 class="column">|</h1>
     
-    <button mat-icon-button (click)="openLoginDialog()">
-      <mat-icon>account_circle</mat-icon>
-    </button>
     <button mat-icon-button (click)="openFavSheet()">
-      <mat-icon>favorite</mat-icon>
+      <mat-icon matBadge="15" matBadgeColor="warn" class="hearth">favorite</mat-icon>
     </button>
+    
+    <button mat-icon-button *ngIf="userLogged|async as user; else Loggin" [matMenuTriggerFor]="menu" (click)="getUserLogged()">
+      <img class="userIcon" *ngIf="user.photoURL; else accIcon"  src="{{user.photoURL}}">
+      <ng-template #accIcon ><mat-icon class="logged">account_circle</mat-icon></ng-template>
+    </button>
+    
+    <mat-menu  #menu="matMenu">
+      <button mat-icon-button (click)="logout()">
+        <a style="color: black; margin-left: 10px;">Logout</a>
+      </button>
+    </mat-menu>
+    
+    <ng-template #Loggin >
+      <button mat-icon-button  (click)="openLoginDialog()">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </ng-template>
+
+    
 </mat-toolbar>

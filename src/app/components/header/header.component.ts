@@ -6,6 +6,7 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { CountryService } from 'src/app/services/country.service';
 import { FavSheetComponent } from '../fav-sheet/fav-sheet.component';
 import { Country } from 'src/app/interfaces/country';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +14,17 @@ import { Country } from 'src/app/interfaces/country';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private countryService: CountryService, private _bottomSheet: MatBottomSheet, public _dialog: MatDialog) {}
+  constructor(private countryService: CountryService, private _bottomSheet: MatBottomSheet, public _dialog: MatDialog, private authService: AuthService) {}
 
+  //COUNTRIES VARIABLES =============================================================================
   actualCountry: Country = {img: "https://flagcdn.com/48x36/mx.png", name: "México", code: "mx"}
   actualCurrency: string = "MXN"
   actualLanguage: string = "es"
-
   countryCode: any
   countries: Array<Country> = []
+
+  //USER VARIABLES ======================================================================================
+  userLogged = this.authService.getUserLogged();
   
   loadCountries(language: string){
     this.countryService.getCountries(language).subscribe((data:any)=>{
@@ -81,6 +85,16 @@ export class HeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  getUserLogged(){
+    this.authService.getUserLogged().subscribe(res =>{
+      console.log(`Email:${res?.email} Name:${res?.displayName}`);
     });
   }
 

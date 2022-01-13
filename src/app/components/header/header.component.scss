@@ -9,9 +9,23 @@
 
 button:hover{
     mat-icon{
-        color: red;
         font-weight: bold;
     }
+    .hearth{
+        color: red;
+    }
+}
+
+.userIcon{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.logged{
+    color: greenyellow;
 }
 
 a {
@@ -28,7 +42,18 @@ a:hover{
     cursor: pointer;
 }
 
+.region-label{
+    padding: 7px;
+}
+
 .region-label:hover{
     color: orange;
     cursor: pointer;
+}
+
+.column{
+    color: #fff;
+    height: 80px;
+    font-size: 117px;
+    cursor: default;
 }

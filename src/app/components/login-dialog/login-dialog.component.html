@@ -1,22 +1,20 @@
 <h1 mat-dialog-title>Únete a nosotros</h1>
-<div mat-dialog-content>
-  <p>Establezca su región preferida, idioma y moneda preferida.</p>
-</div>
 
 <mat-tab-group>
 
   <mat-tab label="Iniciar Sesión">
     <form class="login-form" [formGroup]="loginForm">
 
-      <!------------------------------USERNAME---------------------------------------------------->
+      <!------------------------------EMAIL---------------------------------------------------->
       <mat-form-field class="login-full-width" appearance="fill">
-        <mat-label>Nombre de usuario</mat-label>
-        <input matInput placeholder="Ex. Pizza" formControlName="username" [errorStateMatcher]="matcher">
-      </mat-form-field>
+        <mat-label>Correo Electrónico</mat-label>
 
-      <div *ngIf="loginForm.controls['username'].errors">
-        <mat-error *ngIf="loginForm.controls['username'].errors['required']">
-          Se requiere un <strong>nombre de usuario</strong>
+        <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher" formControlName="email" placeholder="Ex. correo@dominio.com">
+      </mat-form-field>
+      <!-- [errorStateMatcher]="matcher" -->
+      <div *ngIf="loginForm.controls['email'].errors" >
+        <mat-error *ngIf="loginForm.controls['email'].errors['required']">
+          Se requiere un <strong>correo electronico</strong>
         </mat-error>
       </div>
 
@@ -24,31 +22,51 @@
       <mat-form-field class="login-full-width" appearance="fill">
         <mat-label>Contraseña</mat-label>
 
-        <input matInput [type]="pass1Visibility ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher">
+        <input matInput [type]="pass1Visibility ? 'password' : 'text'" formControlName="password">
         <mat-icon matSuffix (click)="pass1Visibility = !pass1Visibility">{{pass1Visibility ? 'visibility_off' : 'visibility'}}</mat-icon>
-
       </mat-form-field>
 
+      <hr>
+      <h2 mat-dialog-title>Ingresa con:</h2>
+      <div class="icons">
+        <ul>
+          <li><button (click)="googleLogin()" style="margin-left: 50px;"><img alt="Google" width="22px" src="https://cdn.icon-icons.com/icons2/836/PNG/512/Google_Chrome_icon-icons.com_66794.png"></button></li>
+          <!-- <li><button><img alt="Facebook" width="22px" src="https://cdn.icon-icons.com/icons2/2429/PNG/512/facebook_logo_icon_147291.png"></button></li>
+          <li><button><img alt="GitHub" width="22px" src="https://cdn.icon-icons.com/icons2/901/PNG/512/github_icon-icons.com_69253.png"></button></li>
+          <li><button><img alt="Steam" width="22px" src="https://cdn.icon-icons.com/icons2/2428/PNG/512/steam_black_logo_icon_147078.png"></button></li>
+          <li><button><img alt="Epic Games" width="22px" src="https://cdn.icon-icons.com/icons2/2407/PNG/512/epic_games_icon_146187.png"></button></li> -->
+        </ul>
+    </div>
+      
+
+
       <!-----------------------------LOGIN BUTTON---------------------------------------------------------------->
-      <button style="margin-top: 10px;" mat-raised-button color="primary">Iniciar Sesión</button>
+      <button style="margin-top: 10px;" type="submit" mat-raised-button color="primary" (click)="onLogin()">Iniciar Sesión</button>
       <!--------------------------------------------------------------------------------------------------------->
     </form>
   </mat-tab>
 
   <mat-tab label="Registrarse"> 
-    <form class="signin-form" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+    <form class="signin-form" [formGroup]="signinForm">
 
-      <!------------------------------USERNAME---------------------------------------------------->
+      <!------------------------------EMAIL---------------------------------------------------->
       <mat-form-field class="login-full-width" appearance="fill">
-        <mat-label>Nombre de usuario</mat-label>
-        <input matInput placeholder="Ex. Pizza">
-      </mat-form-field>    
+        <mat-label>Correo Electrónico</mat-label>
+
+        <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher" formControlName="email" placeholder="Ex. correo@dominio.com">
+      </mat-form-field>
+
+      <div *ngIf="signinForm.controls['email'].errors" >
+        <mat-error *ngIf="signinForm.controls['email'].errors['required']">
+          Se requiere un <strong>correo electronico</strong>
+        </mat-error>
+      </div>
 
       <!------------------------------PASSWORD---------------------------------------------------->
       <mat-form-field class="login-full-width" appearance="fill">
         <mat-label>Contraseña</mat-label>
 
-        <input matInput [type]="pass2Visibility ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher">
+        <input matInput [type]="pass2Visibility ? 'password' : 'text'" formControlName="password">
 
         <mat-icon matSuffix (click)="pass2Visibility = !pass2Visibility">{{pass2Visibility ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
@@ -88,25 +106,15 @@
         <mat-icon matSuffix (click)="passConfVisibility = !passConfVisibility">{{passConfVisibility ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
 
-      <!------------------------------EMAIL---------------------------------------------------->
-      <mat-form-field class="login-full-width" appearance="fill">
-        <mat-label>Correo Electrónico</mat-label>
-
-        <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
-              placeholder="Ex. correo@dominio.com">
-
-      </mat-form-field>
+      <div *ngIf="signinForm.controls['confirm'].errors">
+        <mat-error *ngIf="signinForm.controls['confirm'].errors['NoPasswordMatch'] && !signinForm.controls['confirm'].errors['required']">
+          La constraseña <strong>no coincide</strong>
+        </mat-error>
+      </div>
       <!-----------------------------SIGNIN BUTTON---------------------------------------------------------------->
-      <button style="margin-top: 10px;" mat-raised-button color="primary">Registrarse</button>
+      <button style="margin-top: 10px;" type="submit" mat-raised-button color="primary" (click)="onRegister()">Registrarse</button>
       <!------------------------------------------------------------------------------------------------->
     </form>
-    <div class="close-button">
-      <button mat-button (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-    </div>
   </mat-tab>
-
-  <div class="close-button">
-    <button mat-button (click)="onNoClick()"><mat-icon>close</mat-icon></button>
-  </div>
 
 </mat-tab-group>

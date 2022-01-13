@@ -1,21 +1,13 @@
 <mat-nav-list>
-    <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-      <span mat-line>Example game #1</span>
-      <span mat-line>Example tag</span>
-    </a>
-  
-    <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Example game #2</span>
-        <span mat-line>Example tag</span>
-    </a>
-  
-    <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Example game #3</span>
-        <span mat-line>Example tag</span>
-    </a>
-  
-    <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Example game #4</span>
-        <span mat-line>Example tag</span>
-    </a>
+    <ng-template>
+        <ul>
+            <li *ngFor="let game in gamesList">
+                <a  mat-list-item>
+                    <span mat-line>{{game.title}}</span>
+                    <span mat-line>{{game.steam_id}}</span>
+                    <span mat-line>{{game.epic_id}}</span>
+                </a>
+            </li>
+        </ul>
+    </ng-template> 
 </mat-nav-list>
