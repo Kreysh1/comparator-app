@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { favGame } from 'src/app/models/favGame';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,7 +29,8 @@ export class LoginDialogComponent implements OnInit{
     public dialogRef: MatDialogRef<FooterComponent>, 
     public formBuilder: FormBuilder, 
     private authService: AuthService, 
-    private userService: UserService
+    private userService: UserService,
+    private _snackBar: MatSnackBar,
   ) { }
 
   //Password Eye
@@ -108,15 +110,25 @@ export class LoginDialogComponent implements OnInit{
 
     const email = this.signinForm.get('email')?.value
     const password = this.signinForm.get('password')?.value
-
+    
     this.authService.register(email, password).then(res => {
       if (res?.user?.uid != undefined){
         this.UID = res?.user?.uid;
         this.nuevoUsuario(res?.user?.uid);
         this.guardarUsuario();
+        this.openSnackBar("Registrado Exitosamente", "X");
+      }
+    }).catch(err => {
+      if(err.code == 'auth/invalid-email'){
+        this.openSnackBar("Correo con formato incorrecto", "X");
+      }
+      else if(err.code == 'auth/email-already-in-use'){
+        this.openSnackBar("Correo ya en uso", "X");
+      }
+      else{
+        this.openSnackBar(err.message, "X");
       }
       
-      console.log(`Se registró: ${res}`);
     })
   }
 
@@ -126,6 +138,17 @@ export class LoginDialogComponent implements OnInit{
     console.log(`${email} | ${password}`)
     this.authService.login(email, password).then(res => {
       console.log(`Sesión Iniciada: ${res}`);
+    }).catch(err => {
+      if(err.code == 'auth/invalid-email'){
+        this.openSnackBar("Correo con formato incorrecto", "X");
+      }
+      else if(err.code == 'auth/wrong-password'){
+        this.openSnackBar("Contraseña incorrecta", "X");
+      }
+      else{
+        this.openSnackBar(err.message, "X");
+      }
+      
     })
   }
 
@@ -137,7 +160,9 @@ export class LoginDialogComponent implements OnInit{
           this.UID = res?.uid;
           this.nuevoGoogle(res?.uid, res?.email);
           this.guardarUsuario();
-          
+        }
+        else{
+          this.openSnackBar("Surgió un Error", "X");
         }
       })
       this.onClose();
@@ -149,6 +174,10 @@ export class LoginDialogComponent implements OnInit{
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
 

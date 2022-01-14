@@ -16,8 +16,8 @@ export class GameService {
   gameObj: AngularFireObject<any>
 
   changeRef(path: any){
-    this.gameRef = this.db.list(`/users/${path}`);
-    this.gameObj = this.db.object(`/users/${path}`);
+    this.gameRef = this.db.list(`/users/${path}/items`);
+    this.gameObj = this.db.object(`/users/${path}/items`);
   }
 
   getObj(){

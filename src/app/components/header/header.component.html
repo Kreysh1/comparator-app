@@ -8,9 +8,9 @@
     <h1 class="column">|</h1>
     
     <button mat-icon-button (click)="openFavSheet()">
-      <mat-icon matBadge="15" matBadgeColor="warn" class="hearth">favorite</mat-icon>
+      <mat-icon matBadge={{itemsLenght}} matBadgeColor="warn" class="hearth">favorite</mat-icon>
     </button>
-    
+
     <button mat-icon-button *ngIf="userLogged|async as user; else Loggin" [matMenuTriggerFor]="menu" (click)="getUserLogged()">
       <img class="userIcon" *ngIf="user.photoURL; else accIcon"  src="{{user.photoURL}}">
       <ng-template #accIcon ><mat-icon class="logged">account_circle</mat-icon></ng-template>
@@ -27,6 +27,4 @@
         <mat-icon>account_circle</mat-icon>
       </button>
     </ng-template>
-
-    
 </mat-toolbar>

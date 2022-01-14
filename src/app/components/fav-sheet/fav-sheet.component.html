@@ -1,13 +1,7 @@
 <mat-nav-list>
-    <ng-template>
-        <ul>
-            <li *ngFor="let game in gamesList">
-                <a  mat-list-item>
-                    <span mat-line>{{game.title}}</span>
-                    <span mat-line>{{game.steam_id}}</span>
-                    <span mat-line>{{game.epic_id}}</span>
-                </a>
-            </li>
-        </ul>
-    </ng-template> 
+    <ng-template ngFor let-item [ngForOf]="_itemsList" let-i="index">
+        <a [routerLink]="['/tracking']" [queryParams]="{epic: item.epic_id, steam: item.steam_id}" mat-list-item (click)="openLink($event)">
+            <span>{{item.title}}</span>
+        </a>
+    </ng-template>     
 </mat-nav-list>

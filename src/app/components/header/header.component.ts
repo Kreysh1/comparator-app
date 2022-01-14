@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { RegionDialogComponent } from '../region-dialog/region-dialog.component';
@@ -15,6 +15,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(private countryService: CountryService, private _bottomSheet: MatBottomSheet, public _dialog: MatDialog, private authService: AuthService) {}
+
+  itemsLenght: number;
 
   //COUNTRIES VARIABLES =============================================================================
   actualCountry: Country = {img: "https://flagcdn.com/48x36/mx.png", name: "México", code: "mx"}

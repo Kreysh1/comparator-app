@@ -1,0 +1,36 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist/comparator-app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [{
+      "source" : "**",
+      "headers" : [
+        {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "https://api.steampowered.com"
+        },
+        {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "https://store.steampowered.com"
+        },
+        {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "https://cdn.icon-icons.com"
+        }
+      ]
+    }]
+  }
+}

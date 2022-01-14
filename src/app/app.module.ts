@@ -26,14 +26,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatBadgeModule } from '@angular/material/badge'
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //UI PRIME-NG
 import {TableModule} from 'primeng/table';
 import {ChartModule} from 'primeng/chart';
 
-import { MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
@@ -86,7 +87,8 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     MatBadgeModule,
     TableModule,
     ChartModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { favGame } from 'src/app/models/favGame';
 import { GameService } from 'src/app/services/game.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { AngularFireList } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-fav-sheet',
@@ -13,7 +12,12 @@ import { Observable } from 'rxjs';
 })
 export class FavSheetComponent implements OnInit{
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<MatBottomSheet>, private gameService: GameService, private authService: AuthService ) {}
+  constructor(private _bottomSheetRef: MatBottomSheetRef<MatBottomSheet>, 
+    private gameService: GameService, 
+    private authService: AuthService,
+    private db: AngularFireDatabase) {
+      //this.db.object(`users/${this.UID}/items`).set({id: 1, name: 'somethins'})
+    }
   
     openLink(event: MouseEvent): void {
       this._bottomSheetRef.dismiss();
@@ -21,50 +25,65 @@ export class FavSheetComponent implements OnInit{
     }
 
     UID: string | undefined;
-    gamesList: favGame[] = [];
-    games: AngularFireList<any>
-    items: Observable<any[]>
-    objeto: any
-
-    changeRef(){
-      this.gameService.changeRef(this.UID)
-    }
+    public _itemsList: favGame[];
+    itemsLenght: number;
 
     getUserLogged(){
-      this.authService.getUserLogged().subscribe(res =>{
-        this.UID = res?.uid
-        //console.log(`Email:${res?.email} Name:${res?.displayName}`);
-      });
-      //this.changeRef()
+      return new Promise((resolve, reject) => {
+        this.authService.getUserLogged().subscribe(res =>{
+          this.UID = res?.uid
+          resolve(this.UID)
+          console.log(`Email:${res?.email} Name:${res?.displayName} UID: ${this.UID}`);
+        });
+      })
     }
 
-    getObj(){
-      let x = this.gameService.getObj().snapshotChanges
-      console.log(x.toString)
+    async getItemsRealTime(){
+      return new Promise((resolve, reject) => {
+        this.db.list(`users/${this.UID}/items`).valueChanges().subscribe(value => {
+          resolve(value);
+        })
+      })
+    }
+
+    async getStarted(){
+      var items: favGame[] = [];
+      await this.getItemsRealTime().then(value => {
+        items = value as favGame[];
+      });
+
+      this._itemsList = items;
+      this.itemsLenght = this._itemsList.length
+      console.log(this._itemsList)
+    }
+
+    reload(){
+      this.reload()
     }
 
     loadAll(){
-      this.gameService.getAll().snapshotChanges().subscribe( res => {
-        res.forEach( item => {
-          const todo = item.payload.toJSON();
-          let key = item.key
-          console.log(`JSON: ${todo}`)
-          console.log(key)
-          console.log(item)
-          this.objeto = todo
-          if(todo != null && key != null){
-            this.gamesList.push(todo)
-          }
-        })
-      })
-
-      console.log(`Lista: ${this.gamesList[0]}`)
+      // this.gameService.getAll().snapshotChanges().subscribe( res => {
+      //   res.forEach( item => {
+      //     const todo = item.payload.toJSON();
+      //     let key = item.key
+      //     console.log(`JSON: ${todo}`)
+      //     console.log(key)
+      //     console.log(item)
+      //     this.objeto = todo
+      //     if(todo != null && key != null){
+      //       this.gamesList.push(todo)
+      //     }
+      //   })
+      // })
+      
     }
 
     ngOnInit(): void {
-      this.getUserLogged();
+      //this.getUserLogged();
       //this.changeRef()
-      this.loadAll()
+      this.getUserLogged().then( x => {
+        this.getStarted()
+      })
     }
 
 }

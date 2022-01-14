@@ -11,23 +11,25 @@ export class AuthService {
 
 
   async register(email:string, password:string){
-    try{
-      return await this.afauth.createUserWithEmailAndPassword(email, password);
-    } 
-    catch(err){
-      console.log("error en register", err);
-      return null;
-    }
+    // try{
+    //   return await this.afauth.createUserWithEmailAndPassword(email, password);
+    // } 
+    // catch(err){
+    //   console.log("error en register", err);
+    //   return null;
+    // }
+    return await this.afauth.createUserWithEmailAndPassword(email, password);
   }
 
   async login(email:string, password:string){
-    try{
-      return await this.afauth.signInWithEmailAndPassword(email, password);
-    } 
-    catch(err){
-      console.log("error en login", err);
-      return null;
-    }
+    // try{
+    //   return await this.afauth.signInWithEmailAndPassword(email, password);
+    // } 
+    // catch(err){
+    //   console.log("error en login", err);
+    //   return null;
+    // }
+    return await this.afauth.signInWithEmailAndPassword(email, password);
   }
 
   async loginWithGoogle(){
